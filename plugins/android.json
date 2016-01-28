@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        },
+        "myket-licensing-cordova-plugin": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        }
+    },
+    "dependent_plugins": {}
+}

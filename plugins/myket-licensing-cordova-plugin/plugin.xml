@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
+        id="myket-licensing-cordova-plugin"
+        version="1.0.0">
+    <name>AndroidLicensePlugin</name>
+    <description>android cordova/phonegap plugin for server based license checking </description>
+    <license>MIT</license>
+    <author>Hadi Lashkari Ghouchani</author> 
+    <keywords>cordova,phonegap,android,LVL,license</keywords>
+
+
+    <js-module src="www/AndroidLicensePlugin.js" name="AndroidLicensePlugin">
+        <clobbers target="window.AndroidLicensePlugin" />
+    </js-module>
+    <asset src="www/AndroidLicensePlugin.js" target="AndroidLicensePlugin.js" />
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="AndroidLicensePlugin">
+                <param name="android-package" value="ir.myket.example.licensing.AndroidLicensePlugin"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="ir.mservices.market.CHECK_LICENSE" />
+        </config-file>
+        
+        <source-file src="src/com/android/vending/licensing/ILicenseResultListener.aidl" target-dir="src/com/android/vending/licensing/" />
+        <source-file src="src/com/android/vending/licensing/ILicensingService.aidl" target-dir="src/com/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/AESObfuscator.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/APKExpansionPolicy.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/DeviceLimiter.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/ILicenseResultListener.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/ILicensingService.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/LicenseChecker.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/LicenseCheckerCallback.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/LicenseValidator.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/MyketServerManagedPolicy.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/NullDeviceLimiter.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/Obfuscator.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/Policy.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/PreferenceObfuscator.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/ResponseData.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/ServerManagedPolicy.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/StrictPolicy.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/ValidationException.java" target-dir="src/com/google/android/vending/licensing/" />
+        <source-file src="src/com/google/android/vending/licensing/util/Base64.java" target-dir="src/com/google/android/vending/licensing/util/" />
+        <source-file src="src/com/google/android/vending/licensing/util/Base64DecoderException.java" target-dir="src/com/google/android/vending/licensing/util/" />
+        <source-file src="src/ir/myket/example/licensing/AndroidLicensePlugin.java" target-dir="src/ir/myket/example/licensing/" />
+     </platform>          
+</plugin>
+ 

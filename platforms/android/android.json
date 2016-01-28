@@ -1,0 +1,87 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AndroidLicensePlugin\"><param name=\"android-package\" value=\"ir.myket.example.licensing.AndroidLicensePlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"ir.mservices.market.CHECK_LICENSE\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        },
+        "myket-licensing-cordova-plugin": {
+            "PACKAGE_NAME": "com.example.android.market.licensing"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "id": "cordova-plugin-dialogs.notification",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+            "id": "cordova-plugin-dialogs.notification_android",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
+            "runs": true
+        },
+        {
+            "file": "plugins/myket-licensing-cordova-plugin/www/AndroidLicensePlugin.js",
+            "id": "myket-licensing-cordova-plugin.AndroidLicensePlugin",
+            "pluginId": "myket-licensing-cordova-plugin",
+            "clobbers": [
+                "window.AndroidLicensePlugin"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-dialogs": "1.2.0",
+        "cordova-plugin-whitelist": "1.2.1",
+        "myket-licensing-cordova-plugin": "1.0.0"
+    }
+}

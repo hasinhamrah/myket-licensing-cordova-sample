@@ -1,0 +1,28 @@
+{
+  "name": "myket-licensing-cordova-plugin",
+  "version": "1.0.0",
+  "description": "android cordova/phonegap plugin for server based license checking (formerly AndroidLicensePlugin)",
+  "cordova": {
+    "id": "myket-licensing-cordova-plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hasinhamrah/myket-licensing-cordova-plugin"
+  },
+  "keywords": [
+    "cordova",
+    "android",
+    "phonegap",
+    "ecosystem:cordova",
+    "cordova-android",
+    "AndroidLicensePlugin",
+    "Myket License Verification Library",
+    "LVL",
+    "License Verification Library"
+  ],
+  "author": "Hadi Lashkari Ghouchani",
+  "license": "MIT"
+}
