@@ -18,6 +18,7 @@ package com.google.android.vending.licensing;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.apache.http.NameValuePair;
@@ -119,11 +120,9 @@ public class MyketServerManagedPolicy implements Policy {
 
         if (response == Policy.LICENSED) {
             // Update server policy data
-            Map<String, String> extras = decodeExtras(rawData.extra);
-            setValidityTimestamp(extras.get("VT"));
-            setRetryUntil(extras.get("GT"));
-            setMaxRetries(extras.get("GR"));
-            response = validateTimeOrigin(response, rawData.timestamp);
+            setValidityTimestamp(rawData.extras.get("VT"));
+            setRetryUntil(rawData.extras.get("GT"));
+            setMaxRetries(rawData.extras.get("GR"));
         } else if (response == Policy.NOT_LICENSED) {
             // Clear out stale policy data
             setValidityTimestamp(DEFAULT_VALIDITY_TIMESTAMP);
@@ -142,21 +141,6 @@ public class MyketServerManagedPolicy implements Policy {
      */
     private long currentBootTime() {
         return System.nanoTime() / 1000000;
-    }
-
-    /**
-     * Validate if the time origin of device clock is the same time as origin of server clock
-     *
-     * @param l               the response
-     * @param serverTimestamp time of server clock
-     * @return validated license
-     */
-    private int validateTimeOrigin(int l, long serverTimestamp) {
-        long ts = System.currentTimeMillis();
-        if (ts < serverTimestamp || serverTimestamp + MILLIS_PER_MINUTE < ts) {
-            return Policy.RETRY;
-        }
-        return l;
     }
 
     /**
@@ -298,19 +282,4 @@ public class MyketServerManagedPolicy implements Policy {
         }
         return false;
     }
-
-    private Map<String, String> decodeExtras(String extras) {
-        Map<String, String> results = new HashMap<String, String>();
-        try {
-            URI rawExtras = new URI("?" + extras);
-            List<NameValuePair> extraList = URLEncodedUtils.parse(rawExtras, "UTF-8");
-            for (NameValuePair item : extraList) {
-                results.put(item.getName(), item.getValue());
-            }
-        } catch (URISyntaxException e) {
-            Log.w(TAG, "Invalid syntax error while decoding extras data from server.");
-        }
-        return results;
-    }
-
 }
